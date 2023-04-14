@@ -49,20 +49,24 @@ func SignUp(ctx context.Context, email, password string) (*model.User, error) {
 
 	rand.Seed(time.Now().UnixNano())
 	user := model.User{
-		UserID:   uuid.GetUUID(),
-		Email:    email,
-		Password: hashedPassword,
-		Nickname: nickName,
-		Avatar:   consts.DefaultAvatarMemo[rand.Intn(3)],
+		UserID:      uuid.GetUUID(),
+		Email:       email,
+		Password:    hashedPassword,
+		Nickname:    nickName,
+		Avatar:      consts.DefaultAvatarMemo[rand.Intn(3)],
+		LastLoginAt: time.Now(),
 	}
 
 	teamInfo := model.Team{
-		TeamID: uuid.GetUUID(),
-		Name:   "默认团队",
-		Type:   consts.TeamTypePrivate,
+		TeamID:              uuid.GetUUID(),
+		Name:                "默认团队",
+		Type:                consts.TeamTypePrivate,
+		TrialExpirationDate: time.Now().AddDate(1, 1, 30),
+		VipExpirationDate:   time.Now().AddDate(1, 1, 30),
 	}
 
 	err = query.Use(dal.DB()).Transaction(func(tx *query.Query) error {
+		fmt.Println(user)
 		if err := tx.User.WithContext(ctx).Create(&user); err != nil {
 			return err
 		}

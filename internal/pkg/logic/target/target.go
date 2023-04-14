@@ -163,6 +163,7 @@ func GetSendSceneResult(ctx context.Context, retID string) ([]*rao.SceneDebug, e
 
 func SendAPI(ctx *gin.Context, teamID string, targetID string) (string, error) {
 	tx := dal.GetQuery().Target
+	fmt.Println("target:", targetID, "team:", teamID, "tx:", tx)
 	t, err := tx.WithContext(ctx).Where(tx.TargetID.Eq(targetID)).First()
 	if err != nil {
 		return "", err

@@ -1,0 +1,1 @@
+"mongodb://runnergo_open:%s@127.0.0.1:27017/runnergo_open" 表示 MongoDB 数据库的地址和端口号为 127.0.0.1:27017，数据库名称为 runnergo_open，用户名为 runnergo_open，密码为 %s。其中 %s 表示密码占位符，需要在实际应用中替换为实际密码

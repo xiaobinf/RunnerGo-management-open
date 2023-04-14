@@ -269,6 +269,7 @@ func initMongoDB() {
 		Conf.MongoDB.DSN = fmt.Sprintf("mongodb://runnergo_open:%s@127.0.0.1:27017/runnergo_open", mgPassword)
 	}
 
+	fmt.Println("------", Conf.MongoDB.Database)
 	Conf.MongoDB.Database = os.Getenv("RG_MONGO_DATABASE")
 	if Conf.MongoDB.Database == "" {
 		Conf.MongoDB.Database = "runnergo_open"
