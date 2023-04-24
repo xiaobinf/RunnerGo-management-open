@@ -22,6 +22,7 @@ func DeleteOperationLogBeforeSevenDay() {
 
 }
 
+// 删除7天前的操作日志
 func DeleteOperationLog() {
 	nowTime := time.Now().Unix()
 	beforeSevenDay := nowTime - (3600 * 24 * 7)
